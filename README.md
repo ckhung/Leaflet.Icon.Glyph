@@ -15,8 +15,10 @@ This repository is a clone of
 [Leaflet/Leaflet.Icon.Glyph](https://github.com/Leaflet/Leaflet.Icon.Glyph),
 with the addition of "shapes". Please see
 [shape-demo.html](https://ckhung.github.io/Leaflet.Icon.Glyph/shape-demo.html).
-Markers of different colors are taken from AwesomeMarkers.
-Additionally, 5 colorful markers of a different shape are added.
+Markers of different colors are taken from AwesomeMarkers,
+keeping only the 5 brighter ones. (`*_ball`)
+5 hollow markers are added. (`*_hball`)
+Additionally, 5 markers of a "bullet" shape are added. (`*_bullet`)
 This shape is anchored at the center and headed horizontally
 along one of the popular writing directions (left to right).
 When combined with [Leaflet.RotatedMarker](https://github.com/bbecquet/Leaflet.RotatedMarker),

@@ -46,35 +46,40 @@ function fillMap() {
 	maxZoom: 24,
 	maxNativeZoom: 18
     }).addTo(theMap);
-    var shapes = [
-	'red_ball', 'orange_ball', 'green_ball', 'blue_ball', 'purple_ball', 
-	'red_bullet', 'orange_bullet', 'green_bullet', 'blue_bullet', 'purple_bullet'
-    ];
+    var ball_shapes = [ 'red_ball', 'orange_ball', 'green_ball', 'blue_ball', 'purple_ball' ],
+	hball_shapes = ['red_hball', 'orange_hball', 'green_hball', 'blue_hball', 'purple_hball'],
+	bullet_shapes = ['red_bullet', 'orange_bullet', 'green_bullet', 'blue_bullet', 'purple_bullet'];
     var glyphs = [
 	'cloud', 'pencil', 'glass', 'music', 'heart',
 	'signal', 'road', 'lock', 'camera', 'picture'
     ];
-    var m = [], r;
-    shapes.forEach(function (s, i) {
-	r = [];
-	glyphs.forEach(function (g, j) {
-	    r.push(L.marker([60-i*12, -120+j*24], {
-		// rotationAngle: (i>=5 && j>=5) ? Math.random()*360 : 0,
-		icon: L.icon.glyph({
-		    shape: s,
-		    prefix: 'glyphicon',
-		    glyph: g
-		})
-	    }).addTo(theMap));
-	});
-	m.push(r);
-    });
-    m.slice(5,10).forEach(function (r, i) {
-	r.slice(5,10).forEach(function (x, j) {
-	    x.setRotationOrigin('center center');
-	    x.setRotationAngle(i*60+j*10);
-	});
-    });
+
+    var i;
+
+    for (i=0; i<5; ++i) {
+
+	L.marker([10,-40], {
+	    icon: L.icon.glyph({
+		shape: ball_shapes[i],
+		prefix: 'glyphicon',
+		glyph: glyphs[i],
+	    })
+	}).addTo(theMap).setRotationAngle(i*72);
+
+	L.marker([10,40], {
+	    icon: L.icon.glyph({ shape: hball_shapes[i], })
+	}).addTo(theMap).setRotationAngle(i*72);
+
+	L.marker([-10,-40+i*20], {
+	    icon: L.icon.glyph({
+		shape: bullet_shapes[i],
+		prefix: 'glyphicon',
+		glyph: glyphs[5+i],
+	    })
+	}).addTo(theMap)
+	.setRotationOrigin('center center')
+	.setRotationAngle(i*72);
+    }
 }
 
 fillMap();
